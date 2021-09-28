@@ -72,7 +72,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+       // backgroundColor: Colors.purple,
+      //  backgroundColor: Color.fromARGB(0xff, 230, 300, 300),
+       // backgroundColor: Color.fromRGBO(230, 230, 290, 0.5),
+        backgroundColor: Color(0xffb74093),
+       // leading: Icon(Icons.home),
         title: Text(_title),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.notifications))
+        ],
       ),
       drawer: SafeArea(
           child: Drawer(

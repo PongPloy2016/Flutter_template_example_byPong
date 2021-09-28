@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class IntrinsicWidth_IntrinsicHeightlayoutScreen extends StatefulWidget {
-  IntrinsicWidth_IntrinsicHeightlayoutScreen({Key key}) : super(key: key);
+  IntrinsicWidth_IntrinsicHeightlayoutScreen({ Key key}) : super(key: key);
 
   @override
   _IntrinsicWidth_IntrinsicHeightlayoutScreenState createState() =>
