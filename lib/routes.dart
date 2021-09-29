@@ -8,6 +8,8 @@ import 'package:flutter_webapi/screens/drawer/codemobile/08-Stack_Layout_Screen.
 import 'package:flutter_webapi/screens/drawer/codemobile/09-Expanded_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/10-SizeBox_Layout_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/11-IntrinsicWidth_IntrinsicHeightLayout_Screen.dart';
+import 'package:flutter_webapi/screens/drawer/codemobile/12-AppBar_Layout_Screen.dart';
+import 'package:flutter_webapi/screens/drawer/codemobile/12-Form_Layout_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/WorkShop_layout.dart';
 
 import 'package:flutter_webapi/screens/drawer/codemobile/menuListCodemobile.dart';
@@ -44,6 +46,8 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   "/IntrinsicWidth_IntrinsicHeightlayoutScreen": (BuildContext context) =>
       IntrinsicWidth_IntrinsicHeightlayoutScreen(),
   "/WorkShoplayoutScreen": (BuildContext context) => WorkShoplayoutScreen(),
+  "/FormLayoutScreen": (BuildContext context) => FormLayoutScreen(),
+  "/AppBarLayoutScreen": (BuildContext context) => AppBarLayoutScreen(),
 
   "/term": (BuildContext context) => TermScreen(),
   "/contact": (BuildContext context) => ContactScreen(),

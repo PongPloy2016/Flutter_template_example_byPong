@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/ponglangpetrung/FlutterProject/flutter_template_example/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-lo/values-lo.xml",
+            "outputFile": "/Users/ponglangpetrung/FlutterProject/flutter_template_example_byPong/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-lo/values-lo.xml",
             "map": [
                 {
                     "source": "/Users/ponglangpetrung/.gradle/caches/transforms-2/files-2.1/a528b13ac93e64cafa3d0480e2c93207/core-1.1.0/res/values-lo/values-lo.xml",
