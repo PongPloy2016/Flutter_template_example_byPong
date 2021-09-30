@@ -151,6 +151,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Navigator.pushNamed(context, '/about');
               },
             ),
+
+              ListTile(
+              leading: Icon(Icons.mail),
+              title: Text("MediaQueryScreen"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/MediaQueryScreen');
+              },
+            ),
+
             ListTile(
               leading: Icon(Icons.info),
               title: Text("ออกจากระบบ"),

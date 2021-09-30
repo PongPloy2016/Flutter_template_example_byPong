@@ -39,12 +39,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-  // คำสั่งตั้งค่าล็อก Sreen เป็นแนวตั้ง
-  SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp
-  ]);
-
+    // คำสั่งตั้งค่าล็อก Sreen เป็นแนวตั้ง
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -78,7 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               Material(
                 borderRadius: BorderRadius.circular(35),
                 color: Colors.blue,
-                  child: InkWell(
+                child: InkWell(
                   borderRadius: BorderRadius.circular(35),
                   onTap: () {
                     _controller.nextPage(
@@ -92,20 +88,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     width: (_currentPage == (_pages.length - 1)) ? 200 : 75,
                     child: (_currentPage == (_pages.length - 1))
                         ? FlatButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          onPressed: (){
-                            Navigator.pushReplacementNamed(context, '/start');
-                          }, 
-                          child: Text(
-                            "Get Started",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                          )
-                          )
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(context, '/start');
+                            },
+                            child: Text(
+                              "Get Started xxx",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ))
                         : Icon(
                             Icons.navigate_next,
                             size: 50,

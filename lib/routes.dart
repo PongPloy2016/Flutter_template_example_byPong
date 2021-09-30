@@ -8,6 +8,8 @@ import 'package:flutter_webapi/screens/drawer/codemobile/08-Stack_Layout_Screen.
 import 'package:flutter_webapi/screens/drawer/codemobile/09-Expanded_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/10-SizeBox_Layout_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/11-IntrinsicWidth_IntrinsicHeightLayout_Screen.dart';
+import 'package:flutter_webapi/screens/drawer/codemobile/12-AppBar_Layout_Screen.dart';
+import 'package:flutter_webapi/screens/drawer/codemobile/12-Form_Layout_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/WorkShop_layout.dart';
 
 import 'package:flutter_webapi/screens/drawer/codemobile/menuListCodemobile.dart';
@@ -20,9 +22,13 @@ import 'package:flutter_webapi/screens/welcome/welcome_screen.dart';
 
 import 'screens/drawer/codemobile/01-container_screen.dart';
 import 'screens/drawer/codemobile/05-ListView_Horizontal_screen.dart';
+import 'screens/media_query/media_layout.dart';
+import 'screens/media_query/media_query.dart';
 
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
-  "/": (BuildContext context) => WelcomeScreen(),
+//  "/": (BuildContext context) => MediaQueryScreen(),
+  "/": (BuildContext context) => MediaLayoutScreen(),
+ // "/": (BuildContext context) => WelcomeScreen(),
   "/start": (BuildContext context) => StartScreen(),
   "/login": (BuildContext context) => LoginScreen(),
   "/register": (BuildContext context) => RegisterScreen(),
@@ -44,7 +50,10 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   "/IntrinsicWidth_IntrinsicHeightlayoutScreen": (BuildContext context) =>
       IntrinsicWidth_IntrinsicHeightlayoutScreen(),
   "/WorkShoplayoutScreen": (BuildContext context) => WorkShoplayoutScreen(),
+  "/FormLayoutScreen": (BuildContext context) => FormLayoutScreen(),
+  "/AppBarLayoutScreen": (BuildContext context) => AppBarLayoutScreen(),
 
   "/term": (BuildContext context) => TermScreen(),
   "/contact": (BuildContext context) => ContactScreen(),
+  "/MediaQueryScreen": (BuildContext context) => MediaQueryScreen(),
 };
