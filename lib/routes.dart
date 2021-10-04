@@ -29,10 +29,12 @@ import 'screens/media_query/media_query.dart';
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
 //  "/": (BuildContext context) => MediaQueryScreen(),
  // "/": (BuildContext context) => MediaLayoutScreen(),
-  "/": (BuildContext context) => WelcomeScreen(),
+ // "/": (BuildContext context) => WelcomeScreen(),
+  "/": (BuildContext context) => LoginScreen(),
   "/start": (BuildContext context) => StartScreen(),
   "/login": (BuildContext context) => LoginScreen(),
   "/register": (BuildContext context) => RegisterScreen(),
+ // "/dashboard": (BuildContext context) => DashboardScreen(),
   "/dashboard": (BuildContext context) => DashboardScreen(),
   "/about": (BuildContext context) => AboutScreen(),
 

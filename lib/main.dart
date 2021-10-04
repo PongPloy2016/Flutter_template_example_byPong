@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       title: 'Flutter Project',
       theme: appTheme(),
-      initialRoute: '/',
+      initialRoute: '/dashboard',
       routes: routes,
     );
   }

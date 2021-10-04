@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webapi/service/rest_api.dart';
 import 'package:flutter_webapi/themes/style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -18,6 +19,29 @@ class _LoginScreenState extends State<LoginScreen> {
 
   //loading...
   bool _isLoading = false ;
+
+  //Alert Dialog
+
+  showAlertDialog(BuildContext context , String msg){
+  AlertDialog alert = AlertDialog(
+    title : Text('logn Stutus'),
+    content: Text(msg),
+    actions: [
+      FlatButton(onPressed: (){
+
+        Navigator.of(context).pop();
+      }, child: Text('OK'))
+    ],
+
+  );
+  showDialog(context: context, 
+  builder: (BuildContext context){
+    return alert ;
+  });
+  
+  }
+
+  // 
 
   TextEditingController mailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -304,6 +328,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   void _login() async {
 
+
+    //สร้าง SharePrefernces
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+
   //แสดง Loading 
   setState(() {
     _isLoading = true ;
@@ -325,7 +354,12 @@ class _LoginScreenState extends State<LoginScreen> {
     _isLoading = false ;
   }); 
 
+  //สรา้งตัวแปรเก็บ shaerdPerferences 
+    sharedPreferences.setString("storeName",body['data']['name']);
+    sharedPreferences.setString("storeEmail",body['data']['email']);
+
     print('login success');
+    Navigator.pushNamed(context, '/dashboard');
   }
   else {
 
@@ -333,6 +367,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _isLoading = false ;
   }); 
     print('login fail');
+   showAlertDialog(context ,"Login Fail");
   }
 
   print(body);
