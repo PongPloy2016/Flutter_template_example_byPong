@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const baseAPIURL = "https://www.example.com/api";
+const baseURLAPI = "http://192.168.43.73/StockFlutterAPI/public/api/";
 const kPrimaryColor = Color(0xFF6F35A5);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
 

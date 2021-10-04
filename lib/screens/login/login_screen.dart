@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_webapi/components/bezierContainer.dart';
-import 'package:flutter_webapi/screens/register/register_screen.dart';
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key, this.title}) : super(key: key);
+import 'dart:convert';
 
-  final String title;
+import 'package:flutter/material.dart';
+import 'package:flutter_webapi/service/rest_api.dart';
+import 'package:flutter_webapi/themes/style.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key key}) : super(key: key);
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -12,250 +14,330 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  Widget _backButton() {
-    return InkWell(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Row(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
-              child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
-            ),
-            Text('Back',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
-          ],
+  String email , password ;
+
+  //loading...
+  bool _isLoading = false ;
+
+  TextEditingController mailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+
+  
+
+  Widget _bulidLogo(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+     // crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 70),
+          child: Text("ItGenius", style: TextStyle(
+            fontSize: 24 ,
+            fontWeight: FontWeight.bold ,
+            color:  Colors.white
+          ),),
         ),
-      ),
-    );
-  }
-
-  Widget _entryField(String title, {bool isPassword = false}) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true))
-        ],
-      ),
-    );
-  }
-
-  Widget _submitButton() {
-    return GestureDetector(
-        onTap: (){
-          Navigator.pushNamedAndRemoveUntil(context, '/dashboard', ModalRoute.withName('/'));
-        },
-        child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 15),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.grey.shade200,
-                  offset: Offset(2, 4),
-                  blurRadius: 5,
-                  spreadRadius: 2)
-            ],
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [Color(0xff14c5d6), Color(0xff056275)])),
-        child: Text(
-          'Login',
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
-      ),
-    );
-  }
-
-  Widget _divider() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
-          Text('or'),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _facebookButton() {
-    return Container(
-      height: 50,
-      margin: EdgeInsets.symmetric(vertical: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xff1959a9),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(5),
-                    topLeft: Radius.circular(5)),
-              ),
-              alignment: Alignment.center,
-              child: Text('f',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w400)),
-            ),
-          ),
-          Expanded(
-            flex: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xff2872ba),
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5)),
-              ),
-              alignment: Alignment.center,
-              child: Text('Log in with Facebook',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400)),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _createAccountLabel() {
-    return InkWell(
-      onTap: () {
-        Navigator.popAndPushNamed(context,'/register');
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        padding: EdgeInsets.all(15),
-        alignment: Alignment.bottomCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Don\'t have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              'Register',
-              style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-
-  Widget _emailPasswordWidget() {
-    return Column(
-      children: <Widget>[
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
+        
       ],
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    
-    final height = MediaQuery.of(context).size.height;
+  Widget _bulidEmailRow(){
+    return Padding(
+      padding: EdgeInsets.all(8),
+      child: TextFormField(
+        controller: mailController,
+        keyboardType: TextInputType.emailAddress,
+        onChanged: (value){
+          setState(() {
+            email = value ;
+          });
+        },
+        decoration: InputDecoration(
+          prefix: Icon(
+            Icons.email ,
+            color: appTheme().primaryColor,
+          ),
+          labelText: "E-mail"
+           ),
+      ),
+      
+    );
+  }
 
-   return Scaffold(
-        body: Container(
-      height: height,
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-              top: -height * .2,
-              right: -MediaQuery.of(context).size.width * .5,
-              child: BezierContainer()),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(height: height * .05),
-                  Image.asset('assets/images/login/google-logo.png',),
-                  SizedBox(height: 20),
-                  _emailPasswordWidget(),
-                  SizedBox(height: 20),
-                  _submitButton(),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    alignment: Alignment.centerRight,
-                    child: Text('Forgot Password ?',
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500)),
-                  ),
-                  _divider(),
-                  _facebookButton(),
-                  _createAccountLabel(),
-                ],
-              ),
+
+
+  Widget _bulidPasswordRow(){
+    return Padding(
+      padding: EdgeInsets.all(8),
+      child: TextFormField(
+        controller: passwordController,
+        keyboardType: TextInputType.emailAddress,
+        obscureText: true,
+        onChanged: (value){
+          setState(() {
+            password = value ;
+          });
+        },
+        decoration: InputDecoration(
+          prefix: Icon(
+            Icons.email ,
+            color: appTheme().primaryColor,
+          ),
+          labelText: "Password"
+           ),
+      ),
+      
+    );
+  }
+
+  Widget _buildFOrgetPasswordButton(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FlatButton(
+          onPressed: (){},
+           child: Text("Forgot Password",style: TextStyle(color: appTheme().primaryColor),
+           ))
+      ],
+    );
+  }
+
+  Widget _bulidLoginButton(){
+    return Row(
+      mainAxisAlignment : MainAxisAlignment.center ,
+      children: [
+        Container(
+          margin: EdgeInsets.only(bottom: 20),
+          child: RaisedButton(
+            elevation: 5.0,
+            color: appTheme().primaryColor ,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            onPressed: _login,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0 ,vertical:  10.0),
+              child: Text(
+                "Login" ,
+                style: TextStyle(
+                  color: Colors.white,
+                  letterSpacing: 1.5 ,
+                  fontSize: 20.0
+                ),
+                ),
+            ),), 
+          ),
+        
+      ],);
+  }
+
+
+  Widget _buildOrRow(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.only(bottom: 20),
+          child : Text(
+            "-OR -",
+            style: TextStyle(fontWeight: FontWeight.w400),
+          )
+        )
+      ],
+
+    );
+  }
+
+  Widget _bulidSocialBtnRow(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: (){},
+          child: Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: appTheme().primaryColor,
+              boxShadow:[
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(0,2),
+                  blurRadius: 6.0
+                )
+              ]
+            ),
+            child: Icon(
+              FontAwesomeIcons.facebookF,
+              color: Colors.white,
+            )
+          ),
+        ),
+        SizedBox(width: 20,),
+
+      GestureDetector(
+          onTap: (){},
+          child: Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.red,
+              boxShadow:[
+                BoxShadow(
+                  color: Colors.black,
+                  offset: Offset(0,2),
+                  blurRadius: 6.0
+                )
+              ]
+            ),
+            child: Icon(
+              FontAwesomeIcons.google,
+              color: Colors.white,
+            )
+          ),
+        )
+
+      ],);
+  }
+
+
+  //การรวม Widget ด้านบนทั้งหมด 
+
+  Widget _bulidContaner(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.all(
+            Radius.circular(20)
+          ),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.6+200,
+            width: MediaQuery.of(context).size.width * 0.8 ,
+            decoration: BoxDecoration(
+              color: Colors.white
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center ,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: Text("Login",style: TextStyle(
+                        fontSize: 24.0
+                      ),),)
+                  ],
+                ),
+                _bulidEmailRow(),
+                _bulidPasswordRow(),
+                _buildFOrgetPasswordButton(),
+                _bulidLoginButton(),
+                _buildOrRow(),
+                _bulidSocialBtnRow()
+              ],
             ),
           ),
-          Positioned(top: 40, left: 0, child: _backButton()),
-        ],
-      ),
-    )
+        )
+      ],
     );
-    
+
   }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child:   SingleChildScrollView(
+            child:  _isLoading ? Center(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: 20,),
+                    Text('กำลังตวจสอบข้อมูล')
+                  ],
+                ),
+              ),
+            )
+            
+             : Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.7,
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: appTheme().primaryColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: const Radius.circular(70),
+                      bottomRight: const Radius.circular(70)
+                    )
+                  ),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   _bulidLogo(),
+              _bulidContaner(),
+                ],
+              )
+             
+            ],
+            ),
+          ),
+        ),        
+      ),
+    );
+  }
+  void _login() async {
+
+  //แสดง Loading 
+  setState(() {
+    _isLoading = true ;
+  }); 
+  //รับค่ามาเก็บลง list
+  var userData = {
+     'email' : mailController.text ,
+     'password' : passwordController.text 
+  };
+
+  //call api
+
+  var response = await CallAPI().postData(userData,"login");
+  var body = json.decode(response.body);
+
+  if(body['success']){
+
+     setState(() {
+    _isLoading = false ;
+  }); 
+
+    print('login success');
+  }
+  else {
+
+     setState(() {
+    _isLoading = false ;
+  }); 
+    print('login fail');
+  }
+
+  print(body);
 }
+}
+
+
+//ส่วนของการเ{ขียน logic การ login
