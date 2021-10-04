@@ -129,6 +129,24 @@ class _MemuListScreenState extends State<MemuListScreen> {
                 Navigator.pushNamed(context, '/AppBarLayoutScreen');
               },
             ),
+            ListTile(
+              leading: Icon(Icons.directions_railway_filled_sharp),
+              title: Text("TabbarLayoutScreen"),
+              subtitle: Text(""),
+              trailing: Icon(Icons.notifications_none),
+              onTap: () {
+                Navigator.pushNamed(context, '/TabbarLayoutScreen');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.directions_railway_filled_sharp),
+              title: Text("NabbarLayoutScreen"),
+              subtitle: Text(""),
+              trailing: Icon(Icons.notifications_none),
+              onTap: () {
+                Navigator.pushNamed(context, '/NabbarLayoutScreen');
+              },
+            ),
           ],
 
           // children: [

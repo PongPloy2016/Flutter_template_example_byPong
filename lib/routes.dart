@@ -10,6 +10,8 @@ import 'package:flutter_webapi/screens/drawer/codemobile/10-SizeBox_Layout_Scree
 import 'package:flutter_webapi/screens/drawer/codemobile/11-IntrinsicWidth_IntrinsicHeightLayout_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/12-AppBar_Layout_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/12-Form_Layout_Screen.dart';
+import 'package:flutter_webapi/screens/drawer/codemobile/13-TabBar_Layout_Screen.dart';
+import 'package:flutter_webapi/screens/drawer/codemobile/14-Navigator_Layout_Screen.dart';
 import 'package:flutter_webapi/screens/drawer/codemobile/WorkShop_layout.dart';
 
 import 'package:flutter_webapi/screens/drawer/codemobile/menuListCodemobile.dart';
@@ -22,14 +24,16 @@ import 'package:flutter_webapi/screens/welcome/welcome_screen.dart';
 
 import 'screens/drawer/codemobile/01-container_screen.dart';
 import 'screens/drawer/codemobile/05-ListView_Horizontal_screen.dart';
-import 'screens/media_query/media_layout.dart';
+import 'screens/drawer/codemobile/main_codemobile.dart';
+
 import 'screens/media_query/media_query.dart';
 
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
 //  "/": (BuildContext context) => MediaQueryScreen(),
-  "/": (BuildContext context) => MediaLayoutScreen(),
- // "/": (BuildContext context) => WelcomeScreen(),
+  // "/": (BuildContext context) => MediaLayoutScreen(),
+  "/": (BuildContext context) => WelcomeScreen(),
   "/start": (BuildContext context) => StartScreen(),
+  "/mainCodemobile": (BuildContext context) => MainCodemobile(),
   "/login": (BuildContext context) => LoginScreen(),
   "/register": (BuildContext context) => RegisterScreen(),
   "/dashboard": (BuildContext context) => DashboardScreen(),
@@ -52,6 +56,8 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   "/WorkShoplayoutScreen": (BuildContext context) => WorkShoplayoutScreen(),
   "/FormLayoutScreen": (BuildContext context) => FormLayoutScreen(),
   "/AppBarLayoutScreen": (BuildContext context) => AppBarLayoutScreen(),
+  "/TabbarLayoutScreen": (BuildContext context) => TabbarLayoutScreen(),
+  "/NabbarLayoutScreen": (BuildContext context) => NavbarLayoutScreen(),
 
   "/term": (BuildContext context) => TermScreen(),
   "/contact": (BuildContext context) => ContactScreen(),

@@ -72,14 +72,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       // backgroundColor: Colors.purple,
-      //  backgroundColor: Color.fromARGB(0xff, 230, 300, 300),
-       // backgroundColor: Color.fromRGBO(230, 230, 290, 0.5),
-        backgroundColor: Color(0xffb74093),
-       // leading: Icon(Icons.home),
+        // backgroundColor: Colors.purple,
+        //  backgroundColor: Color.fromARGB(0xff, 230, 300, 300),
+        // backgroundColor: Color.fromRGBO(230, 230, 290, 0.5),
+        //   backgroundColor: Color(0xffb74093),
+        // leading: Icon(Icons.home),
         title: Text(_title),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.notifications))
+          IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
         ],
       ),
       drawer: SafeArea(
@@ -124,7 +124,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               onTap: () {
                 Navigator.pop(context);
                 //Navigator.pushNamed(context, '/containerCodeMobileScreen');
-                Navigator.pushNamed(context, '/MenuListCodeMobileScrren');
+                //  Navigator.pushNamed(context, '/MenuListCodeMobileScrren');
+                
+                Navigator.pushNamed(context, '/mainCodemobile');
               },
             ),
             ListTile(
@@ -151,8 +153,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Navigator.pushNamed(context, '/about');
               },
             ),
-
-              ListTile(
+            ListTile(
               leading: Icon(Icons.mail),
               title: Text("MediaQueryScreen"),
               onTap: () {
@@ -160,7 +161,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Navigator.pushNamed(context, '/MediaQueryScreen');
               },
             ),
-
             ListTile(
               leading: Icon(Icons.info),
               title: Text("ออกจากระบบ"),

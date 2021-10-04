@@ -12,7 +12,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("หน้า Home"),
+        child: Image.network(
+            "https://miro.medium.com/max/800/1*HKwyb0obV8PeOBy4kWXkiA.png"),
       ),
     );
   }
