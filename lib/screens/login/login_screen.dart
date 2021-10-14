@@ -15,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  String email , password ;
+  String email = "" , password = "" ;
 
   //loading...
   bool _isLoading = false ;
@@ -141,7 +141,11 @@ class _LoginScreenState extends State<LoginScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ),
-            onPressed: _login,
+            onPressed: (){
+
+             // _login
+             Navigator.pushNamed(context, '/dashboard');
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0 ,vertical:  10.0),
               child: Text(

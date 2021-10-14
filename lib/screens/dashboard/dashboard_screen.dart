@@ -36,7 +36,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     super.initState();
     _title = "หน้าหลัก";
     //ตรวจข้อมูล  SharedPreferences ของผู้ใช้
-    checkloginStatus();
+    //checkloginStatus();
   }
 
   //check login Status
@@ -44,10 +44,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
     sharedPreferences = await SharedPreferences.getInstance();
 
     
-    if (sharedPreferences.getString("storeEmail") == null) {
-      //ส่งกลับไปหน้า Login
-      Navigator.pushNamed(context, '/login');
-    }
+    // if (sharedPreferences.getString("storeEmail") == null) {
+    //   //ส่งกลับไปหน้า Login
+    //   Navigator.pushNamed(context, '/login');
+    // }
 
     setState(() {
           nameAccount = sharedPreferences.getString('storeName');
@@ -140,8 +140,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     onTap: () {},
                   )
                 ],
-                accountName: Text(nameAccount),
-                accountEmail: Text(emailAccount),
+                accountName: Text(nameAccount ?? "nameAccount"),
+                accountEmail: Text(emailAccount ?? "emailAccount"),
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(

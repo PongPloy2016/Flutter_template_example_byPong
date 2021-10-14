@@ -22,17 +22,17 @@ String productToJson(Product data) {
 
 class Product {
     Product({
-        @required this.id,
-        @required this.productName,
-        @required this.productDetail,
-        @required this.productBarcode,
-        @required this.productQty,
-        @required this.productPrice,
-        @required this.productImage,
-        @required this.productCategory,
-        @required this.productStatus,
-        @required this.createdAt,
-        @required this.updatedAt,
+         this.id,
+         this.productName,
+         this.productDetail,
+         this.productBarcode,
+         this.productQty,
+         this.productPrice,
+         this.productImage,
+         this.productCategory,
+         this.productStatus,
+         this.createdAt,
+         this.updatedAt,
     });
 
     int id;
